@@ -5,10 +5,21 @@ using UnityEngine;
 public class UIController : MonoBehaviour {
     [SerializeField]
     GameObject losingMenu;
-	// Use this for initialization
-	void Start () {
+    [SerializeField]
+    GameObject winMenu;
+    [SerializeField]
+    GameObject pauseMenu;
+    [SerializeField]
+    GameObject optionsMenu;
+    // Use this for initialization
+    void Start () {
         GameController.OnGameOver += gameOver;
         GameController.OnRestart += restart;
+        GameController.OnGameWin += win;
+        GameController.OnPause += pause;
+        GameController.OnResume += resume;
+        GameController.OnOptionsClick += options;
+
 
     }
 	
@@ -16,12 +27,33 @@ public class UIController : MonoBehaviour {
 	void Update () {
 		
 	}
+    void win()
+    {
+        winMenu.SetActive(true);
+    }
     void gameOver()
     {
         losingMenu.SetActive(true);
     }
     void restart()
     {
+        winMenu.SetActive(false);
         losingMenu.SetActive(false);
     }
+    void pause()
+    {
+        pauseMenu.SetActive(true);
+        optionsMenu.SetActive(false);
+    }
+    void resume()
+    {
+        pauseMenu.SetActive(false);
+    }
+    void options()
+    {
+
+        pauseMenu.SetActive(false);
+        optionsMenu.SetActive(true);
+    }
+
 }

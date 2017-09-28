@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletScript : FlyingObject {
+    public Transform Master;
     [SerializeField]
-    float destroyTime;
+    float detonateTime;
 	// Use this for initialization
 	void Start () {
         GameController.OnRestart += restart;
@@ -23,17 +24,17 @@ public class BulletScript : FlyingObject {
         if (b != null)
         {
 
-            b.Hit();
+            b.Hit(Master);
             
             boom();
         }
     }
-    IEnumerator autoBoom()
+    protected IEnumerator autoBoom(float t=10)
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(t);
         boom();
     }
-    void boom()
+    protected void boom()
     {
         GameController.OnRestart -= restart;
         StopAllCoroutines();

@@ -5,11 +5,13 @@ using UnityEngine;
 public class BotController : FlyingObject
 {
     [SerializeField]
-    Transform target;
+    protected Transform target;
     // Use this for initialization
     void Start () {
         GameController.OnRestart += restart;
         target = GameController.Instance.Player.transform;
+        StartCoroutine(autoDestroy());
+       
 		
 	}
 	
@@ -24,12 +26,19 @@ public class BotController : FlyingObject
         }
        
     }
+    public override void Hit(Transform t = null)
+    {
+        if (t == GameController.Instance.Player.transform)
+            GameController.Instance.OnAddPointTrigger(2);
+        dead();
+    }
     protected override void dead()
     {
+        StopAllCoroutines();
         GameController.OnRestart -= restart;
         Destroy(gameObject);
     }
-    IEnumerator autoDestroy()
+    protected IEnumerator autoDestroy()
     {
         yield return new WaitForSeconds(30);
         dead();

@@ -20,9 +20,12 @@ public class FireController : MonoBehaviour {
 	}
     protected void fire()
     {
-        GameObject b = Instantiate(bulletPrefab,barrelTransform.position,barrelTransform.rotation,null);
-        Rigidbody r = b.GetComponent<Rigidbody>();
-        r.AddForce(barrelTransform.up*power);
+        
+            GameObject b = Instantiate(bulletPrefab, barrelTransform.position, barrelTransform.rotation, null);
+            Rigidbody r = b.GetComponent<Rigidbody>();
+            r.AddForce(barrelTransform.up * power);
+            b.GetComponent<BulletScript>().Master = transform;
+        
 
     }
 }

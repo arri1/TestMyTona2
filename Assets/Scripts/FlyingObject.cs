@@ -29,7 +29,7 @@ public class FlyingObject : MonoBehaviour {
 	void Update () {
 		
 	}
-    public void Hit()
+    virtual public void Hit(Transform t=null)
     {
         dead();
     }

@@ -11,8 +11,11 @@ public class PlayerFireController : FireController {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Space))
-            fire();
+        if (GameController.Instance.GameStatus == GameController.GameStatusEnum.Play)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+                fire();
+        }
 
     }
 }

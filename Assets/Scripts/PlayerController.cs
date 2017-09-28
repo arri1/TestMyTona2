@@ -5,7 +5,11 @@ using UnityEngine;
 public class PlayerController : FlyingObject
 {
     [SerializeField]
-    bool deadKey=false;
+    int points = 0;
+    [SerializeField]
+    int pointsForWin;
+
+
     enum moveStatusEnum
     {
         Hold,
@@ -20,7 +24,9 @@ public class PlayerController : FlyingObject
     // Use this for initialization
     void Start ()
     {
+        PlayerPrefs.SetInt("Level",0);
         GameController.OnRestart += restart;
+        GameController.OnAddPoint += addPoint;
 
 
     }
@@ -28,7 +34,7 @@ public class PlayerController : FlyingObject
     // Update is called once per frame
     void Update ()
     {
-        if (!deadKey)
+        if (GameController.Instance.GameStatus==GameController.GameStatusEnum.Play)
         {
 
             if (Input.GetKey(KeyCode.A))
@@ -71,12 +77,33 @@ public class PlayerController : FlyingObject
     }
     protected override void dead()
     {
-        GameController.Instance.OnGameOverTrigger();
-        deadKey = true;
-        Rigidbody.velocity = Vector3.zero;
+        if (GameController.Instance.GameStatus == GameController.GameStatusEnum.Play)
+        {
+            GameController.Instance.OnGameOverTrigger();
+            Rigidbody.velocity = Vector3.zero;
+        }
     }
     protected override void restart()
     {
-        deadKey = false;
+        pointsForWin = 5 + PlayerPrefs.GetInt("Level") * 10;
+        points = 0;
+    }
+    void win()
+    {
+        if (GameController.Instance.GameStatus == GameController.GameStatusEnum.Play)
+        {
+            PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
+            GameController.Instance.OnGameWinTrigger();
+        }
+    }
+    void addPoint(int p)
+    {
+        if (GameController.Instance.GameStatus == GameController.GameStatusEnum.Play)
+        {
+            points += p;
+            if (pointsForWin < points)
+                win();
+        }
+
     }
 }
