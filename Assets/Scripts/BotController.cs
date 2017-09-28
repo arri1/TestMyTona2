@@ -8,6 +8,7 @@ public class BotController : FlyingObject
     Transform target;
     // Use this for initialization
     void Start () {
+        GameController.OnRestart += restart;
         target = GameController.Instance.Player.transform;
 		
 	}
@@ -16,20 +17,25 @@ public class BotController : FlyingObject
 	void Update () {
         //Vector3 d = transform.position - target.position;
         transform.LookAt(target.position);
-        Rigidbody.AddForce(transform.up * forwardSpeed);
+        Rigidbody.AddForce(transform.forward * forwardSpeed);
         if (Rigidbody.velocity.magnitude > forwardMaxSpeed)
         {
-            Rigidbody.velocity = transform.up * forwardMaxSpeed;
+            Rigidbody.velocity = transform.forward * forwardMaxSpeed;
         }
        
     }
     protected override void dead()
     {
+        GameController.OnRestart -= restart;
         Destroy(gameObject);
     }
     IEnumerator autoDestroy()
     {
         yield return new WaitForSeconds(30);
+        dead();
+    }
+    protected override void restart()
+    {
         dead();
     }
 }

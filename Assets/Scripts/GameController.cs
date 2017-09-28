@@ -13,6 +13,8 @@ public class GameController : Singleton<GameController>
     public static event MoveForward OnMoveForward;
     public delegate void GameOver();
     public static event GameOver OnGameOver;
+    public delegate void Restart();
+    public static event Restart OnRestart;
     #endregion
     #region Triggers
     public void OnMoveRightTrigger()
@@ -29,6 +31,11 @@ public class GameController : Singleton<GameController>
     {
         if (OnGameOver != null)
             OnGameOver();
+    }
+    public void OnRestartTrigger()
+    {
+        if (OnRestart != null)
+            OnRestart();
     }
     #endregion
     [SerializeField]

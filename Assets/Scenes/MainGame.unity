@@ -209,7 +209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &202450644
 RectTransform:
   m_ObjectHideFlags: 0
@@ -535,7 +535,7 @@ GameObject:
   - component: {fileID: 979040511}
   - component: {fileID: 979040510}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -598,7 +598,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 979040511}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1367794435}
+        m_MethodName: OnRestartTrigger
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &979040511
@@ -649,7 +660,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1109293767
 Transform:
   m_ObjectHideFlags: 0
@@ -675,6 +686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: decdd11d9e14d514590612ca55f5c12b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  losingMenu: {fileID: 202450643}
 --- !u!4 &1238124749 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4504423905881338, guid: 030a957e19e891c489ac77ecee7f4ecb,
@@ -1163,6 +1175,21 @@ Prefab:
     - target: {fileID: 4347680062258844, guid: 030a957e19e891c489ac77ecee7f4ecb, type: 2}
       propertyPath: m_LocalPosition.y
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114762630312223482, guid: 030a957e19e891c489ac77ecee7f4ecb,
+        type: 2}
+      propertyPath: forwardSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114762630312223482, guid: 030a957e19e891c489ac77ecee7f4ecb,
+        type: 2}
+      propertyPath: forwardMaxSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114762630312223482, guid: 030a957e19e891c489ac77ecee7f4ecb,
+        type: 2}
+      propertyPath: rotationSpeed
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114294590171966410, guid: 030a957e19e891c489ac77ecee7f4ecb, type: 2}

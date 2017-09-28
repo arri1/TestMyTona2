@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : FlyingObject
 {
+    [SerializeField]
+    bool deadKey=false;
     enum moveStatusEnum
     {
         Hold,
@@ -18,7 +20,7 @@ public class PlayerController : FlyingObject
     // Use this for initialization
     void Start ()
     {
-
+        GameController.OnRestart += restart;
 
 
     }
@@ -26,25 +28,29 @@ public class PlayerController : FlyingObject
     // Update is called once per frame
     void Update ()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (!deadKey)
         {
-            moveLeft();
-        }
-        else
-        {
-            if (Input.GetKey(KeyCode.D))
+
+            if (Input.GetKey(KeyCode.A))
             {
-                moveRight();
+                moveLeft();
             }
             else
-                moveForward();
+            {
+                if (Input.GetKey(KeyCode.D))
+                {
+                    moveRight();
+                }
+                else
+                    moveForward();
 
+            }
+            if (Rigidbody.velocity.magnitude > forwardMaxSpeed)
+            {
+                Rigidbody.velocity = Rigidbody.transform.up * forwardMaxSpeed;
+            }
+            Rigidbody.AddForce(Rigidbody.transform.up * forwardSpeed);
         }
-        if (Rigidbody.velocity.magnitude > forwardMaxSpeed)
-        {
-            Rigidbody.velocity = Rigidbody.transform.up * forwardMaxSpeed;
-        }
-        Rigidbody.AddForce(Rigidbody.transform.up*forwardSpeed);
 
 
     }
@@ -65,6 +71,12 @@ public class PlayerController : FlyingObject
     }
     protected override void dead()
     {
-        
+        GameController.Instance.OnGameOverTrigger();
+        deadKey = true;
+        Rigidbody.velocity = Vector3.zero;
+    }
+    protected override void restart()
+    {
+        deadKey = false;
     }
 }

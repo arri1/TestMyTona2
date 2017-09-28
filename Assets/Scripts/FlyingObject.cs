@@ -37,4 +37,8 @@ public class FlyingObject : MonoBehaviour {
     {
 
     }
+    virtual protected void restart()
+    {
+        Destroy(gameObject);
+    }
 }

@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletScript : MonoBehaviour {
+public class BulletScript : FlyingObject {
     [SerializeField]
     float destroyTime;
 	// Use this for initialization
 	void Start () {
+        GameController.OnRestart += restart;
         StartCoroutine(autoBoom());
 		
 	}
@@ -23,7 +24,7 @@ public class BulletScript : MonoBehaviour {
         {
 
             b.Hit();
-            StopAllCoroutines();
+            
             boom();
         }
     }
@@ -34,6 +35,13 @@ public class BulletScript : MonoBehaviour {
     }
     void boom()
     {
+        GameController.OnRestart -= restart;
+        StopAllCoroutines();
         Destroy(gameObject);
     }
+    protected override void restart()
+    {
+        boom();
+    }
+
 }
