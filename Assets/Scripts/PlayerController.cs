@@ -81,11 +81,12 @@ public class PlayerController : FlyingObject
         {
             GameController.Instance.OnGameOverTrigger();
             Rigidbody.velocity = Vector3.zero;
+            boom();
         }
     }
     protected override void restart()
     {
-        pointsForWin = 5 + PlayerPrefs.GetInt("Level") * 10;
+        pointsForWin = pointsForWin + PlayerPrefs.GetInt("Level") * 10;
         points = 0;
     }
     void win()

@@ -33,9 +33,16 @@ public class GameController : Singleton<GameController>
     public static event Restart OnRestart;
     public delegate void AddPoint(int p);
     public static event AddPoint OnAddPoint;
+    public delegate void PlayFireSound(AudioSource a);
+    public static event PlayFireSound OnPlayFireSound;
 
     #endregion
     #region Triggers
+    public void OnPlayFireSoundTrigger(AudioSource a)
+    {
+        if (OnPlayFireSound != null)
+            OnPlayFireSound(a);
+    }
     public void OnMoveRightTrigger()
     {
         if (OnMoveRight != null)
@@ -52,6 +59,7 @@ public class GameController : Singleton<GameController>
         if (OnGameOver != null)
             OnGameOver();
         GameStatus = GameStatusEnum.Lose;
+        Time.timeScale = 0;
     }
     public void OnRestartTrigger()
     {
@@ -59,6 +67,7 @@ public class GameController : Singleton<GameController>
         if (OnRestart != null)
             OnRestart();
         GameStatus = GameStatusEnum.Play;
+        Time.timeScale = 1;
     }
     public void OnAddPointTrigger(int p)
     {
@@ -71,6 +80,7 @@ public class GameController : Singleton<GameController>
         if (OnGameWin != null)
             OnGameWin();
         GameStatus = GameStatusEnum.Win;
+        Time.timeScale = 0;
     }
     public void OnPauseTrigger()
     {

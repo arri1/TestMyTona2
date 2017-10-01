@@ -47,6 +47,7 @@ public class UIController : MonoBehaviour {
     }
     void resume()
     {
+        optionsMenu.SetActive(false);
         pauseMenu.SetActive(false);
     }
     void options()

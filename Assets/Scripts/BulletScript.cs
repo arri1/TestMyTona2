@@ -6,8 +6,9 @@ public class BulletScript : FlyingObject {
     public Transform Master;
     [SerializeField]
     float detonateTime;
-	// Use this for initialization
-	void Start () {
+  
+    // Use this for initialization
+    void Start () {
         GameController.OnRestart += restart;
         StartCoroutine(autoBoom());
 		
@@ -34,10 +35,11 @@ public class BulletScript : FlyingObject {
         yield return new WaitForSeconds(t);
         boom();
     }
-    protected void boom()
+    protected override void boom()
     {
         GameController.OnRestart -= restart;
         StopAllCoroutines();
+        GameObject b = Instantiate(boomPrefab, gameObject.transform.position, gameObject.transform.rotation, null);  
         Destroy(gameObject);
     }
     protected override void restart()

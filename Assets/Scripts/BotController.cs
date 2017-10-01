@@ -18,7 +18,7 @@ public class BotController : FlyingObject
 	// Update is called once per frame
 	void Update () {
         //Vector3 d = transform.position - target.position;
-        transform.LookAt(target.position);
+        transform.LookAt(target.position,Vector3.forward);
         Rigidbody.AddForce(transform.forward * forwardSpeed);
         if (Rigidbody.velocity.magnitude > forwardMaxSpeed)
         {
@@ -36,6 +36,7 @@ public class BotController : FlyingObject
     {
         StopAllCoroutines();
         GameController.OnRestart -= restart;
+        boom();
         Destroy(gameObject);
     }
     protected IEnumerator autoDestroy()

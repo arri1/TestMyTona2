@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FlyingObject : MonoBehaviour {
+    [SerializeField]
+    protected GameObject boomPrefab;
     new Rigidbody rigidbody;
 
     public Rigidbody Rigidbody
@@ -29,6 +31,10 @@ public class FlyingObject : MonoBehaviour {
 	void Update () {
 		
 	}
+    protected virtual void boom()
+    {
+        GameObject b = Instantiate(boomPrefab, gameObject.transform.position, gameObject.transform.rotation, null);
+    }
     virtual public void Hit(Transform t=null)
     {
         dead();
