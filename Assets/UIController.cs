@@ -1,8 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class UIController : MonoBehaviour {
+    [SerializeField]
+    Slider soundSlider;
+    [SerializeField]
+    Slider musicSlider;
     [SerializeField]
     GameObject losingMenu;
     [SerializeField]
@@ -19,12 +25,15 @@ public class UIController : MonoBehaviour {
         GameController.OnPause += pause;
         GameController.OnResume += resume;
         GameController.OnOptionsClick += options;
+        soundSlider.value = GameController.Instance.SoundVolume;
+
+        musicSlider.value = GameController.Instance.MusicVolume;
 
 
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
     void win()

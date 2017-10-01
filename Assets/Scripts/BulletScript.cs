@@ -6,7 +6,8 @@ public class BulletScript : FlyingObject {
     public Transform Master;
     [SerializeField]
     float detonateTime;
-  
+
+
     // Use this for initialization
     void Start () {
         GameController.OnRestart += restart;
@@ -39,6 +40,7 @@ public class BulletScript : FlyingObject {
     {
         GameController.OnRestart -= restart;
         StopAllCoroutines();
+        AudioSource.PlayClipAtPoint(explisonSound, transform.position,GameController.Instance.SoundVolume);
         GameObject b = Instantiate(boomPrefab, gameObject.transform.position, gameObject.transform.rotation, null);  
         Destroy(gameObject);
     }

@@ -22,7 +22,8 @@ GameObject:
   - component: {fileID: 54135896535377050}
   - component: {fileID: 114762630312223482}
   - component: {fileID: 114802209702016980}
-  - component: {fileID: 82159884317512706}
+  - component: {fileID: 81676286200566086}
+  - component: {fileID: 82314144144421264}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -612,7 +613,14 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!82 &82159884317512706
+--- !u!81 &81676286200566086
+AudioListener:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1023928134466914}
+  m_Enabled: 1
+--- !u!82 &82314144144421264
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -621,11 +629,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b9ea4a5a2aa6e49409ff7293338ea5e6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b80e4579803e86b4b8893bec3a8d89f0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -746,6 +754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boomPrefab: {fileID: 1068076672494268, guid: 52cd4b1d00dfa5e4680c74a06ae8f110, type: 2}
+  explisonSound: {fileID: 8300000, guid: eb35aff0032cb4340a97e9b79a9d99a5, type: 3}
   forwardSpeed: 3
   forwardMaxSpeed: 7
   points: 0
@@ -762,7 +771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4df6f976786f2d748806d45b07782ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireAuidoSource: {fileID: 82159884317512706}
+  fireAudioClip: {fileID: 8300000, guid: dfde65682cca5be40bc8be4c14debf01, type: 3}
   bulletPrefab: {fileID: 1279640211507848, guid: f5389f0978e7edf4195f6920ed76666d,
     type: 2}
   barrelTransform: {fileID: 4752079357295842}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireController : MonoBehaviour {
     [SerializeField]
-    protected AudioSource fireAuidoSource;
+    protected AudioClip fireAudioClip;
     [SerializeField]
     GameObject bulletPrefab;
     [SerializeField]
@@ -28,7 +28,7 @@ public class FireController : MonoBehaviour {
         Rigidbody r = b.GetComponent<Rigidbody>();
         r.AddForce(barrelTransform.up * power);
         b.GetComponent<BulletScript>().Master = transform;
-        GameController.Instance.OnPlayFireSoundTrigger(fireAuidoSource);
+        AudioSource.PlayClipAtPoint(fireAudioClip, transform.position,(float)GameController.Instance.SoundVolume);
 
 
     }

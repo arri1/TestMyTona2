@@ -4,6 +4,39 @@ using UnityEngine;
 
 public class GameController : Singleton<GameController>
 {
+    [SerializeField]
+    AudioSource music;
+    [SerializeField]
+    public float SoundVolume
+    {
+        get
+        {
+            
+    
+            return PlayerPrefs.GetFloat("SoundVolume", 1);
+        }
+        set
+        {
+            PlayerPrefs.SetFloat("SoundVolume", value);
+        }
+    }
+    [SerializeField]
+    public float MusicVolume
+    {
+        get
+        {
+            
+            
+            return PlayerPrefs.GetFloat("MusicVolume", 1); ;
+        }
+        set
+        {
+            music.Stop();
+            PlayerPrefs.SetFloat("MusicVolume", value); ;
+            music.volume = value;
+            music.Play();
+        }
+    }
     public enum GameStatusEnum
     {
         Play,
@@ -120,10 +153,13 @@ public class GameController : Singleton<GameController>
     // Use this for initialization
     void Start ()
     {
-		
-	}
-	// Update is called once per frame
-	void Update ()
+        music.volume =MusicVolume;
+        music.time = (Random.Range(0, music.clip.length));
+        music.Play();
+
+    }
+    // Update is called once per frame
+    void Update ()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {

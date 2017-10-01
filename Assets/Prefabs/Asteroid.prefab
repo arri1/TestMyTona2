@@ -225,4 +225,5 @@ MonoBehaviour:
   forwardMaxSpeed: 1000
   Master: {fileID: 0}
   detonateTime: 0
+  explisonSound: {fileID: 8300000, guid: c88ca7122b3abb448bbb813bb604554d, type: 3}
   target: {fileID: 0}

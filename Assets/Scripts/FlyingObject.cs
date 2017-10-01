@@ -5,6 +5,8 @@ using UnityEngine;
 public class FlyingObject : MonoBehaviour {
     [SerializeField]
     protected GameObject boomPrefab;
+    [SerializeField]
+    protected AudioClip explisonSound;
     new Rigidbody rigidbody;
 
     public Rigidbody Rigidbody
@@ -33,6 +35,7 @@ public class FlyingObject : MonoBehaviour {
 	}
     protected virtual void boom()
     {
+        AudioSource.PlayClipAtPoint(explisonSound, transform.position, GameController.Instance.SoundVolume);
         GameObject b = Instantiate(boomPrefab, gameObject.transform.position, gameObject.transform.rotation, null);
     }
     virtual public void Hit(Transform t=null)

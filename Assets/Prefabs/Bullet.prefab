@@ -236,6 +236,7 @@ MonoBehaviour:
   forwardMaxSpeed: 0
   Master: {fileID: 0}
   detonateTime: 0
+  explisonSound: {fileID: 8300000, guid: fe90555d014b45a43b2aab80188da9dd, type: 3}
 --- !u!135 &135562040041700104
 SphereCollider:
   m_ObjectHideFlags: 1
