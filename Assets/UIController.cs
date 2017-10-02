@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 
 public class UIController : MonoBehaviour {
+   
     [SerializeField]
     Slider soundSlider;
     [SerializeField]
@@ -64,6 +65,13 @@ public class UIController : MonoBehaviour {
 
         pauseMenu.SetActive(false);
         optionsMenu.SetActive(true);
+    }
+
+    public void BackToMenu()
+    {
+
+        Application.Quit();
+        
     }
 
 }

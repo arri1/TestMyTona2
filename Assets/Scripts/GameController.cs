@@ -153,6 +153,7 @@ public class GameController : Singleton<GameController>
     // Use this for initialization
     void Start ()
     {
+        Time.timeScale = 1f;
         music.volume =MusicVolume;
         music.time = (Random.Range(0, music.clip.length));
         music.Play();

@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : FlyingObject
 {
     [SerializeField]
+    UnityEngine.UI.Text score;
+    [SerializeField]
     int points = 0;
     [SerializeField]
     int pointsForWin;
@@ -24,6 +26,7 @@ public class PlayerController : FlyingObject
     // Use this for initialization
     void Start ()
     {
+        score.text = points + "/" + pointsForWin;
         PlayerPrefs.SetInt("Level",0);
         GameController.OnRestart += restart;
         GameController.OnAddPoint += addPoint;
@@ -86,8 +89,10 @@ public class PlayerController : FlyingObject
     }
     protected override void restart()
     {
+        
         pointsForWin = pointsForWin + PlayerPrefs.GetInt("Level") * 10;
         points = 0;
+        score.text = points + "/" + pointsForWin;
     }
     void win()
     {
@@ -101,7 +106,9 @@ public class PlayerController : FlyingObject
     {
         if (GameController.Instance.GameStatus == GameController.GameStatusEnum.Play)
         {
+            
             points += p;
+            score.text = points + "/" + pointsForWin;
             if (pointsForWin < points)
                 win();
         }
